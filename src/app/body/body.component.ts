@@ -23,11 +23,12 @@ export class BodyComponent {
     let viewportHeight = window.innerHeight - this.headerHeight;
     this.yOffset = -viewportHeight;
 
-    if (scrollValueY == 0) {
-      this.scrollDiv.nativeElement.style.top = 0;
+    if (scrollValueY === 0) {
+      this.scrollDiv.nativeElement.style.top = '0px';
       console.log('value 0 chec', this.scrollDiv.nativeElement.style.top);
     } else {
-      this.scrollDiv.nativeElement.style.top = this.yOffset;
+      console.log('yoffset', this.yOffset);
+      this.scrollDiv.nativeElement.style.top = `${this.yOffset}px`;
       console.log('value else chec', this.scrollDiv.nativeElement.style.top);
     }
   }
