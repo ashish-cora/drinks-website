@@ -13,6 +13,9 @@ module.exports = {
       transitionDuration: {
         350: "350ms",
       },
+      minWidth: {
+        "100vw": "100vw",
+      },
     },
   },
   plugins: [],
