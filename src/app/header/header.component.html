@@ -14,8 +14,22 @@
     <div>Services</div>
   </div>
   <mat-toolbar color="primary" class="!w-fit !bg-transparent white-menuBars">
-    <button mat-icon-button>
+    <button mat-icon-button (click)="menuHandler($event)" #menuIcon>
       <mat-icon>menu</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      (click)="closeHandler($event)"
+      class="hidden"
+      #closeIcon
+    >
+      <mat-icon>close</mat-icon>
     </button>
   </mat-toolbar>
 </header>
+
+<div
+  #menuModal
+  class="bg-red-500 h-screen w-screen absolute top-16 right-[-100vw] transition-right duration-300 z-50"
+></div>
+<!-- <div #menuModal class="bg-red-500 h-screen"></div> -->
