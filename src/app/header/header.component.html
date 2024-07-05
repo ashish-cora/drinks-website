@@ -1,15 +1,19 @@
 <header
-  class="h-16 bg-headerColor backdrop-blur flex justify-between shadow-xl sticky top-0 overflow-hidden"
+  class="h-16 bg-transparent backdrop-blur flex justify-between shadow-xl sticky top-0 z-10"
 >
   <div class="left-header w-1/4 h-full overflow-hidden">
-    <img class="object-cover h-full" src="assets/beers.png" alt="beer image" />
+    <img
+      class="object-cover h-full"
+      src="assets/lightBeer.png"
+      alt="beer image"
+    />
   </div>
   <div class="right-header hidden">
     <div>Why us?</div>
     <div>Menu</div>
     <div>Services</div>
   </div>
-  <mat-toolbar color="primary" class="!w-fit">
+  <mat-toolbar color="primary" class="!w-fit !bg-transparent white-menuBars">
     <button mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button>

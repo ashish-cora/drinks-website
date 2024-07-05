@@ -1,9 +1,4 @@
-import {
-  Component,
-  HostListener,
-  ViewChild,
-  ElementRef,
-} from '@angular/core';
+import { Component, HostListener, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-body',
@@ -13,16 +8,27 @@ import {
   styleUrl: './body.component.css',
 })
 export class BodyComponent {
+  headerHeight: number = 64;
   yOffset: number = 0;
+
   @ViewChild('scrollDiv') scrollDiv: ElementRef;
 
   constructor() {}
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: Event): void {
-    // console.log('page is scrolling rn');
-    let viewportHeight = window.innerHeight;
+    let scrollValueY = window.pageYOffset;
+    console.log('scrolling rn', Math.floor(scrollValueY));
+
+    let viewportHeight = window.innerHeight - this.headerHeight;
     this.yOffset = -viewportHeight;
-    console.log('asdf---->>', this.scrollDiv.nativeElement.style.y);
+
+    if (scrollValueY == 0) {
+      this.scrollDiv.nativeElement.style.top = 0;
+      console.log('value 0 chec', this.scrollDiv.nativeElement.style.top);
+    } else {
+      this.scrollDiv.nativeElement.style.top = this.yOffset;
+      console.log('value else chec', this.scrollDiv.nativeElement.style.top);
+    }
   }
 }

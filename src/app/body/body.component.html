@@ -1,12 +1,12 @@
 <div
-  class="flex justify-center items-center relative overflow-hidden min-h-screen text-white bg-background transition-top ease-in-out duration-350"
+  class="flex justify-center items-center min-h-screen text-white bg-background transition-top ease-in-out duration-350 top-0 -z-10"
   (scroll)="onScroll($event)"
   #scrollDiv
   [style.top.px]="yOffset"
 >
   <h3>Liquor Heaven</h3>
   <video
-    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-full -z-10 min-h-full object-fill"
+    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-fill"
     [autoplay]="true"
     [muted]="true"
     [loop]="true"
@@ -16,7 +16,7 @@
   </video>
 </div>
 
-<div>
+<div class="-z-10">
   <img src="assets/grapeWine.png" />
   <img src="assets/grapeWine.png" />
   <img src="assets/grapeWine.png" />
