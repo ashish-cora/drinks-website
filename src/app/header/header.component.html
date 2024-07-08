@@ -30,6 +30,20 @@
 
 <div
   #menuModal
-  class="bg-black h-screen w-screen fixed top-16 right-[-100vw] transition-right duration-300 z-50"
-></div>
-<!-- <div #menuModal class="bg-red-500 h-screen"></div> -->
+  class="bg-black h-screen min-w-full fixed top-16 right-[-100vw] transition-right duration-300 z-50"
+>
+  <div *ngFor="let content of menuDropDownList; index as i">
+    <hr />
+    <nav class="h-16 text-center leading-64px text-white">
+      <hr />
+      <a
+        [routerLink]="[content.path]"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        (click)="closeHandler($event)"
+      >
+        {{ content.label }}
+      </a>
+    </nav>
+  </div>
+</div>

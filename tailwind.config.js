@@ -16,6 +16,9 @@ module.exports = {
       minWidth: {
         "100vw": "100vw",
       },
+      lineHeight: {
+        "64px": "64px",
+      },
     },
   },
   plugins: [],
