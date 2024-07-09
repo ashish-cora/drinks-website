@@ -45,7 +45,7 @@ export class HeaderComponent {
     this.closeIcon.nativeElement.style.display = 'block';
     this.menuIcon.nativeElement.style.display = 'none';
     this.menuModal.nativeElement.style.right = ' 0px';
-    console.log('asdf00>>', this.menuModal.nativeElement.style.right);
+    
   }
 
   closeHandler(event: Event): void {

@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BodyComponent } from './body/body.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ import { BodyComponent } from './body/body.component';
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
+    HttpClientModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
