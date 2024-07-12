@@ -4,7 +4,6 @@
   #scrollDiv
   [style.top.px]="yOffset"
 >
-  <h3>Liquor Heaven</h3>
   <video
     class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-fill"
     [autoplay]="true"
@@ -15,14 +14,16 @@
     Your browser does not support HTML5 video.
   </video>
 </div>
-<div>
+<div class="relative top-16 -z-10 w-full">
+  <img src="assets/grapeWine.png" />
+
+  <h4
+    class="playwrite-be-wal-cursiveFont z-10 absolute transition-transform text-white w-full text-center h-36"
+    [@botTop]="isScroll ? 'top' : 'bot'"
+  >
+    Liquor Heaven
+  </h4>
   <img src="assets/grapeWine.png" />
   <img src="assets/grapeWine.png" />
   <img src="assets/grapeWine.png" />
-  <img src="assets/grapeWine.png" />
-  <img src="assets/grapeWine.png" />
-  <img src="assets/grapeWine.png" />
-  <img src="assets/grapeWine.png" />
-  <img src="assets/grapeWine.png" />
-  <div class="h-96 w-96" #breweryDiv></div>
 </div>

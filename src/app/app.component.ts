@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component} from '@angular/core';
 import {
-  Router,
   RouterLink,
   RouterLinkActive,
   RouterOutlet,
@@ -19,10 +18,10 @@ import { HttpClientModule } from '@angular/common/http';
     BodyComponent,
     MatIconModule,
     MatToolbarModule,
+    HttpClientModule,
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
-    HttpClientModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

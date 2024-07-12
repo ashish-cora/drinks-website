@@ -1,51 +1,48 @@
-import {
-  Component,
-  HostListener,
-  ViewChild,
-  ElementRef,
-  OnInit,
-} from '@angular/core';
+import { Component, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { BreweriesService } from '../breweries.service';
-import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
-import { filter } from 'rxjs';
+import { CommonModule, CurrencyPipe } from '@angular/common';
+
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+
 @Component({
   selector: 'app-body',
   standalone: true,
-  imports: [HttpClientModule, CommonModule],
-  providers: [BreweriesService],
+  imports: [CommonModule],
+  providers: [BreweriesService, CurrencyPipe],
   templateUrl: './body.component.html',
-  styleUrl: './body.component.css',
+  styleUrls: ['./body.component.css'],
+  animations: [
+    trigger('botTop', [
+      state('top', style({ transform: 'translateY(0)' })),
+      state('bot', style({ transform: 'translateY(100%)' })),
+      transition('top => bot', [animate('0.5s')]),
+      transition('bot => top', [animate('0.5s')]),
+    ]),
+  ],
 })
-export class BodyComponent implements OnInit {
+export class BodyComponent {
   headerHeight: number = 64;
   yOffset: number = 0;
-  breweryList: any = [];
-  filteredBreweryList: any = [];
+
+  isScroll: boolean;
 
   @ViewChild('scrollDiv') scrollDiv: ElementRef;
   @ViewChild('breweryDiv') breweryDiv: ElementRef;
 
-  constructor(private breweries: BreweriesService) {}
-
-  ngOnInit(): void {
-    this.breweries.getData().subscribe(
-      (response) => {
-        this.breweryList = response;
-        console.log('unfiltered list', this.breweryList);
-
-        this.filterBreweryList();
-      },
-      (error) => {
-        console.error('error fetching breweryList:', error);
-      }
-    );
-  }
+  constructor() {}
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: Event): void {
+    this.isScroll = window.pageYOffset > 0;
+    console.log('isScroll', this.isScroll);
+
     let scrollValueY = window.pageYOffset;
-    console.log('scrolling rn', Math.floor(scrollValueY));
 
     let viewportHeight = window.innerHeight - this.headerHeight;
     this.yOffset = -viewportHeight;
@@ -54,20 +51,7 @@ export class BodyComponent implements OnInit {
       this.scrollDiv.nativeElement.style.top = '0px';
       console.log('value 0 chec', this.scrollDiv.nativeElement.style.top);
     } else {
-      console.log('yoffset', this.yOffset);
       this.scrollDiv.nativeElement.style.top = `${this.yOffset}px`;
-      console.log('value else chec', this.scrollDiv.nativeElement.style.top);
     }
-  }
-
-  filterBreweryList(): void {
-    if (this.breweryList && this.breweryList.length) {
-      this.filteredBreweryList = this.breweryList.filter((list: any) =>
-        list.name.includes('Barrel')
-      );
-      this.breweryDiv.nativeElement.innerHTML = this.filteredBreweryList
-        .map((data: any) => data.name)
-        .join('<br>');
-    } else console.log('no list available');
   }
 }
