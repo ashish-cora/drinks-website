@@ -46,6 +46,7 @@ export class HeaderComponent implements OnInit {
   filteredBreweryList: any = [];
   amount: string[];
   errorMsg = '';
+  isOpen: Boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -81,6 +82,7 @@ export class HeaderComponent implements OnInit {
   @ViewChild('menuIcon') menuIcon: ElementRef;
   @ViewChild('closeIcon') closeIcon: ElementRef;
   @ViewChild('menuModal') menuModal: ElementRef;
+  @ViewChild('searchBar') searchBar: ElementRef;
 
   menuDropDownList: menuDropDownListType[] = [
     { label: 'Shop', path: '/shop' },
@@ -126,5 +128,15 @@ export class HeaderComponent implements OnInit {
     this.typeValue
       ? ((this.showSuggestions = false), (this.showResult = true))
       : ((this.showSuggestions = true), (this.showResult = false));
+  }
+
+  appearSearchBar() {
+    console.log('isopen__before', this.isOpen);
+
+    this.isOpen
+      ? (this.searchBar.nativeElement.style.width = '0')
+      : (this.searchBar.nativeElement.style.width = '150px');
+    this.isOpen = !this.isOpen;
+    console.log('isopen__after', this.isOpen);
   }
 }

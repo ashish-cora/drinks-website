@@ -1,43 +1,79 @@
 <header
-  class="h-16 min-w-full bg-transparent backdrop-blur flex justify-between shadow-xl fixed top-0 z-10"
+  class="h-16 min-w-full bg-transparent backdrop-blur flex items-center justify-between shadow-xl fixed top-0 z-10"
+  style="line-height: 64px"
 >
-  <nav class="left-header w-1/4 h-full overflow-hidden">
-    <a
-      routerLink="/home"
-      routerLinkActive="activebutton"
-      ariaCurrentWhenActive="page"
-    >
-      <img
-        class="object-cover h-full"
-        src="assets/lightBeer.png"
-        alt="beer image"
-      />
-    </a>
-  </nav>
-  <div class="min-h-full">
-    <div>
-      <form
-        [formGroup]="searchForm"
-        class="searchBar"
-        (ngSubmit)="onSearchSubmit()"
+  <div class="h-full w-10">
+    <nav class="left-header h-full overflow-hidden">
+      <a
+        routerLink="/home"
+        routerLinkActive="activebutton"
+        ariaCurrentWhenActive="page"
       >
-        <input
-          type="text"
-          placeholder="search.."
-          formControlName="searchValue"
-          (input)="getCityValue($event)"
-          (focus)="recommend()"
-          (blur)="showSuggestions = false; showResult = false"
+        <img
+          class="object-cover block mx-auto h-full"
+          src="assets/lightBeer.png"
+          alt="beer image"
         />
-      </form>
-    </div>
-    <div *ngIf="showSuggestions">
-      <div *ngFor="let article of articles">{{ article }}</div>
-    </div>
-    <div *ngIf="showResult">
-      <div *ngFor="let filteredCityValue of filteredCityValueList">
-        {{ filteredCityValue }}
+      </a>
+    </nav>
+  </div>
+  <div class="flex h-full">
+    <div class="searchBox">
+      <div class="flex">
+        <div>
+          <form
+            [formGroup]="searchForm"
+            class="searchBar"
+            (ngSubmit)="onSearchSubmit()"
+          >
+            <input
+              type="text"
+              placeholder="search.."
+              formControlName="searchValue"
+              (input)="getCityValue($event)"
+              (focus)="recommend()"
+              (blur)="showSuggestions = false; showResult = false"
+              class="rounded-md h-5 w-0 transition-all duration-300 ease-in-out"
+              #searchBar
+            />
+          </form>
+        </div>
+        <div class="flex items-center">
+          <div
+            class="flex items-center justify-center"
+            (click)="appearSearchBar()"
+          >
+            <mat-toolbar color="primary" class="!bg-transparent white-Color">
+              <mat-icon>search</mat-icon>
+            </mat-toolbar>
+          </div>
+        </div>
       </div>
+      <div class="bg-slate-200 rounded-md mt-2">
+        <div *ngIf="showSuggestions">
+          <div *ngFor="let article of articles">{{ article }}</div>
+        </div>
+        <div *ngIf="showResult">
+          <div *ngFor="let filteredCityValue of filteredCityValueList">
+            {{ filteredCityValue }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="menuBars flex items-center">
+      <mat-toolbar color="primary" class="!w-fit !bg-transparent white-Color">
+        <button mat-icon-button (click)="menuHandler($event)" #menuIcon>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          (click)="closeHandler($event)"
+          class="hidden"
+          #closeIcon
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-toolbar>
     </div>
   </div>
   <div class="right-header hidden">
@@ -45,19 +81,6 @@
     <div>Menu</div>
     <div>Services</div>
   </div>
-  <mat-toolbar color="primary" class="!w-fit !bg-transparent white-menuBars">
-    <button mat-icon-button (click)="menuHandler($event)" #menuIcon>
-      <mat-icon>menu</mat-icon>
-    </button>
-    <button
-      mat-icon-button
-      (click)="closeHandler($event)"
-      class="hidden"
-      #closeIcon
-    >
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-toolbar>
 </header>
 
 <div
