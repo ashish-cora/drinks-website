@@ -19,7 +19,7 @@
   </div>
   <div class="flex h-full">
     <div class="searchBox">
-      <div class="flex combineSearchBox">
+      <div class="flex combineSearchBox w-1/2">
         <div>
           <form
             [formGroup]="searchForm"
@@ -48,21 +48,22 @@
             </mat-toolbar>
           </div>
         </div>
-      </div>
-      <div
-        class="bg-slate-200 rounded-md mt-2 max-w-52 h-screen overflow-auto hidden"
-        #suggestionBox
-      >
-        <div *ngIf="showSuggestions">
-          <div *ngFor="let article of articles">{{ article }}</div>
-        </div>
-        <div *ngIf="showResult">
-          <div *ngFor="let filteredCityValue of filteredCityValueList">
-            {{ filteredCityValue }}
+        <div
+          class="bg-slate-200 w-1/2 absolute mr-14 rounded-md mt-16 h-screen overflow-auto hidden"
+          #suggestionBox
+        >
+          <div *ngIf="showSuggestions">
+            <div *ngFor="let article of articles">{{ article }}</div>
+          </div>
+          <div *ngIf="showResult">
+            <div *ngFor="let filteredCityValue of filteredCityValueList">
+              {{ filteredCityValue }}
+            </div>
           </div>
         </div>
       </div>
     </div>
+
     <div class="menuBars flex items-center">
       <mat-toolbar color="primary" class="!w-fit !bg-transparent white-Color">
         <button mat-icon-button (click)="menuHandler($event)" #menuIcon>
