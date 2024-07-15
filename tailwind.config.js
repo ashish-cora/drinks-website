@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         headerColor: "#4d4dff",
         background: "rgba(0, 0, 0, 0.2)",
+        footer: "#141414",
       },
       translate: {
         "-1/2": "-50%",
