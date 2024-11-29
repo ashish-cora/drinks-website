@@ -1,4 +1,10 @@
-import { Component, HostListener, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  ViewChild,
+  ElementRef,
+  Host,
+} from '@angular/core';
 import { BreweriesService } from '../breweries.service';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 
@@ -9,6 +15,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+
 
 @Component({
   selector: 'app-body',
@@ -29,6 +36,8 @@ import {
 export class BodyComponent {
   headerHeight: number = 64;
   yOffset: number = 0;
+  day: string;
+  weekDays: string[] = ['sunday', 'monday'];
 
   isScroll: boolean;
 
